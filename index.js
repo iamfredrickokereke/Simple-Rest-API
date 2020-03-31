@@ -43,7 +43,7 @@ app.post("/api/users", (req, res) => {
         const collection = client.db("test").collection("kelly");
         // perform actions on the collection object
     
-        collection.insertOne(req.body, (err, result) => { 
+        collection.insertOne(req.body, (error, result) => { 
             
             if (error){
                 throw error;
