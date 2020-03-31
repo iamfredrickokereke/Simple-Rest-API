@@ -10,6 +10,8 @@ const uri = "mongodb+srv://Kelly:root@mycluster-dex7f.mongodb.net/test?retryWrit
 
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
+app.use(express.json())
+
 app.get('/', (req, res) => { res.send("Connected to server")})
 
 app.get('/api/users', (req, res) => {
@@ -38,7 +40,7 @@ app.get('/api/users', (req, res) => {
 app.post("/api/users", (req, res) => {
 
     client.connect(err => {
-        const collection = client.db("test").collection("users");
+        const collection = client.db("test").collection("kelly");
         // perform actions on the collection object
     
         collection.insertOne(req.body, (err, result) => { 
