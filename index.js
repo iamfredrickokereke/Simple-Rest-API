@@ -17,7 +17,7 @@ app.get('/api/users', (req, res) => {
     
     
     client.connect(err => {
-    const collection = client.db("test").collection("devices");
+    const collection = client.db("test").collection("users");
     // perform actions on the collection object
 
     collection.find().toArray((error, documents) => { 
@@ -33,5 +33,27 @@ app.get('/api/users', (req, res) => {
 
 
 } )
+
+
+app.post("/api/users", (req, res) => {
+
+    client.connect(err => {
+        const collection = client.db("test").collection("users");
+        // perform actions on the collection object
+    
+        collection.insertOne(req.body, (err, result) => { 
+            
+            if (error){
+                throw error;
+            }
+            res.send(result.insertedId)})
+    
+        client.close();
+        });
+    
+    
+
+
+}) 
 
 app.listen(port, () => { console.log("Server is running on port " + port)});
